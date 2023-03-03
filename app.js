@@ -33,10 +33,14 @@ app.use(session( //inicialização da sessão
 app.use(passport.initialize()); //inicialização do passaporte
 app.use(passport.session()); //linha de código que diz para o nosso app usar o passaporte para lidar com a sessão que abrimos antes
 
-mongoose.set('strictQuery', false); 
-mongoose.connect("mongodb://127.0.0.1:27017/userDB", {useNewUrlParser: true}, () => {
-    console.log("Connected to UserDB");
+mongoose.set('strictQuery', false);
+
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}, () => {
+    console.log("Connected to Daily Secrets DB");
 });
+/* mongoose.connect("mongodb://127.0.0.1:27017/userDB", {useNewUrlParser: true}, () => {
+    console.log("Connected to UserDB");
+}); */
 
 const secretSchema = new mongoose.Schema(
     {
